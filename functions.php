@@ -18,3 +18,20 @@
         #Retourner les données
         return $data;
     }
+
+    function generateCode(){
+        return "P#@".date('his');
+    }
+
+    function allCategories()
+    {
+        global $db;
+        $sql = "SELECT * FROM categorie ORDER BY libelleCat ASC";
+        return $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function addProduit($code, $designation, $prix, $quantite, $categorie){
+        global $db;
+        $sql = "INSERT INTO produit VALUES(null, '$code', '$designation', $prix, $quantite, $categorie)";
+        return $db->exec($sql);//0 ou 1
+    }
